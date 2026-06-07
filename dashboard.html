@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sarah Market Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🛍️ Sarah Market</h1>
+<p>Business Dashboard</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="contact.html">Contact</a>
+<a href="admin.html">Admin</a>
+<a href="orders.html">Orders</a>
+<a href="dashboard.html">Dashboard</a>
+</nav>
+
+<div class="container">
+
+<div class="card">
+<h2>Total Products</h2>
+<h1 id="totalProducts">0</h1>
+</div>
+
+<div class="card">
+<h2>Total Orders</h2>
+<h1 id="totalOrders">0</h1>
+</div>
+
+<div class="card">
+<h2>Estimated Revenue</h2>
+<h1>R<span id="revenue">0</span></h1>
+</div>
+
+<div class="card">
+<h2>Low Stock Products</h2>
+<div id="lowStock"></div>
+</div>
+
+</div>
+
+<script>
+
+let products =
+JSON.parse(localStorage.getItem("adminProducts"))
+|| [];
+
+let orders =
+JSON.parse(localStorage.getItem("orders"))
+|| [];
+
+document.getElementById("totalProducts").innerText =
+products.length;
+
+document.getElementById("totalOrders").innerText =
+orders.length;
+
+let revenue = 0;
+
+orders.forEach(order => {
+revenue += Number(order.total);
+});
+
+document.getElementById("revenue").innerText =
+revenue;
+
+let lowStockHtml = "";
+
+products.forEach(product => {
+
+if(Number(product.stock) <= 5){
+
+lowStockHtml += `
+<p>
+${product.name}
+(Stock: ${product.stock})
+</p>
+`;
+
+}
+
+});
+
+if(lowStockHtml === ""){
+
+lowStockHtml =
+"<p>No low stock products.</p>";
+
+}
+
+document.getElementById("lowStock").innerHTML =
+lowStockHtml;
+
+</script>
+
+</body>
+</html>

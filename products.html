@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sarah Market Products</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Sarah Market</h1>
+<p>Our Products</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+<div class="card">
+<h2>Sneakers</h2>
+<p>Price: R599</p>
+<button onclick="addToCart('Sneakers',599)">
+Add To Cart
+</button>
+</div>
+
+<div class="card">
+<h2>T-Shirt</h2>
+<p>Price: R199</p>
+<button onclick="addToCart('T-Shirt',199)">
+Add To Cart
+</button>
+</div>
+
+<div class="card">
+<h2>Headphones</h2>
+<p>Price: R349</p>
+<button onclick="addToCart('Headphones',349)">
+Add To Cart
+</button>
+</div>
+
+<div class="card">
+<h2>Smart Watch</h2>
+<p>Price: R899</p>
+<button onclick="addToCart('Smart Watch',899)">
+Add To Cart
+</button>
+</div>
+
+</div>
+
+<script>
+
+function addToCart(product, price){
+
+let cart =
+JSON.parse(localStorage.getItem('cart'))
+|| [];
+
+cart.push({
+name: product,
+price: price
+});
+
+localStorage.setItem(
+'cart',
+JSON.stringify(cart)
+);
+
+alert(product + " added to cart");
+
+}
+
+</script>
+
+</body>
+</html>

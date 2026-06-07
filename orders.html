@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sarah Market Orders</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Sarah Market</h1>
+<p>Order Management</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="contact.html">Contact</a>
+<a href="admin.html">Admin</a>
+<a href="orders.html">Orders</a>
+</nav>
+
+<div class="container">
+
+<h2>Customer Orders</h2>
+
+<div id="orders"></div>
+
+</div>
+
+<script>
+
+let orders =
+JSON.parse(localStorage.getItem("orders"))
+|| [];
+
+let html = "";
+
+orders.forEach((order,index)=>{
+
+html += `
+<div class="card">
+
+<h3>Order #${index+1}</h3>
+
+<p><b>Name:</b> ${order.name}</p>
+
+<p><b>Phone:</b> ${order.phone}</p>
+
+<p><b>Address:</b> ${order.address}</p>
+
+<p><b>Total:</b> R${order.total}</p>
+
+</div>
+`;
+
+});
+
+if(html==""){
+html="<div class='card'><h3>No Orders Yet</h3></div>";
+}
+
+document.getElementById("orders").innerHTML = html;
+
+</script>
+
+</body>
+</html>
